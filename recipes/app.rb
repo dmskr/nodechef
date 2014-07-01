@@ -32,6 +32,41 @@ npm_package 'mocha'
 npm_package 'bower'
 npm_package 'gulp'
 
+# Set the projects directory
+['/var/www', '/var/www/' + node['project_name']].each do |dir|
+  directory dir do
+    mode '0770'
+    owner 'node'
+    group 'node'
+  end
+end
+
+directory "/home/node/.ssh" do
+  owner 'node'
+  group 'node'
+  mode '0700'
+end
+
+template "/home/node/.ssh/id_rsa" do
+  source 'deploy.id_rsa'
+  owner 'node'
+  group 'node'
+  mode '0600'
+end
+
+template "/home/node/.ssh/id_rsa.pub" do
+  source 'deploy.id_rsa.pub'
+  owner 'node'
+  group 'node'
+  mode '0600'
+end
+
+git "/var/www/#{node['project_name']}" do
+  repository node[:git][:repository]
+  action :checkout
+  user 'node'
+end
+
 #logrotate_app 'node' do
   #path      '/apps/node/shared/log/*.log'
   #size      '100M'

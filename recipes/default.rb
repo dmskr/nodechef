@@ -27,6 +27,7 @@ package "libmagickwand-dev"
 package "mailutils"
 package "apache2-utils"
 package "s3cmd"
+package "git"
 
 # Node User
 group 'node'
