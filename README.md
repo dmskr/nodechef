@@ -1,10 +1,11 @@
 # nodechef-cookbook
 
-TODO: Enter the cookbook description here.
+Setup Node.js server with few global packages and MongoDB
 
 ## Supported Platforms
 
-TODO: List your supported platforms.
+Ubuntu
+Debian
 
 ## Attributes
 
@@ -16,10 +17,61 @@ TODO: List your supported platforms.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['nodechef']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['hostname']</tt></td>
+    <td>String</td>
+    <td>External Hostname of the server, usually, top level domain</td>
+    <td><tt></tt></td>
+  </tr>
+  <tr>
+    <td><tt>['set_fqdn']</tt></td>
+    <td>String</td>
+    <td>Hostname of the particular server</td>
+    <td><tt></tt></td>
+  </tr>
+  <tr>
+    <td><tt>['public_keys']</tt></td>
+    <td>Array of Strings</td>
+    <td>Public keys allowed to access the server</td>
+    <td><tt></tt></td>
+  </tr>
+  <tr>
+    <td><tt>['known_hosts']</tt></td>
+    <td>Array of Strings</td>
+    <td>List of urls added to known hosts</td>
+    <td><tt>['github.com']</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['ssmtp']</tt></td>
+    <td>Hash of values</td>
+    <td>SMTP configuration, see attributes/default.rb</td>
+    <td><tt></tt></td>
+  </tr>
+  <tr>
+    <td colspan="4">App Server</td>
+  </tr>
+  <tr>
+    <td><tt>['project_name']</tt></td>
+    <td>String</td>
+    <td>Short name of the project. Used to name main directory.</td>
+    <td><tt>node</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['git']['repository']</tt></td>
+    <td>String</td>
+    <td>Git url to repository to clone</td>
+    <td><tt></tt></td>
+  </tr>
+  <tr>
+    <td><tt>['git']['deploy_public_key']</tt></td>
+    <td>String</td>
+    <td>Public key used for deployments</td>
+    <td><tt></tt></td>
+  </tr>
+  <tr>
+    <td><tt>['git']['deploy_private_key']</tt></td>
+    <td>String</td>
+    <td>Private key used for deployments</td>
+    <td><tt></tt></td>
   </tr>
 </table>
 
@@ -37,15 +89,33 @@ Include `nodechef` in your node's `run_list`:
 }
 ```
 
-## Contributing
+Application Server:
 
-1. Fork the repository on Github
-2. Create a named feature branch (i.e. `add-new-recipe`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request
+```json
+{
+  "run_list": [
+    "recipe[nodechef::app]"
+  ]
+}
+```
 
-## License and Authors
+Database Server:
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+```json
+{
+  "run_list": [
+    "recipe[nodechef::db]"
+  ]
+}
+```
+
+All-in-One:
+```json
+{
+  "run_list": [
+    "recipe[nodechef::db]"
+    "recipe[nodechef::app]"
+  ]
+}
+```
+

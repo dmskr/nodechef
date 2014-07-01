@@ -1,5 +1,5 @@
 # Mandatory for customization on each node level
-default['hostname'] = 'node.com'
+default['hostname'] = ''
 default['set_fqdn'] = 'localhost'
 
 default['public_keys'] = [
