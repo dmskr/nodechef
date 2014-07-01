@@ -16,4 +16,7 @@ depends 'logrotate'
 depends 'ufw'
 depends 'nginx'
 depends 'git'
+depends 'ulimit'
+depends 'mongodb'
+depends 'python'
 
