@@ -14,4 +14,5 @@ depends 'ssh_known_hosts'
 depends 'ssmtp'
 depends 'nginx'
 depends 'logrotate'
+depends 'hostname'
 

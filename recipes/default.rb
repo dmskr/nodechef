@@ -63,7 +63,9 @@ node['known_hosts'].each do |host|
   ssh_known_hosts_entry host
 end
 
-#include_recipe 'hostname'
-##include_recipe 'sudo'
+include_recipe 'hostname'
+
+# Set passwordless sudo
+include_recipe 'sudo'
+
 #include_recipe 'git'
-#
