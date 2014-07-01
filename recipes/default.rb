@@ -68,4 +68,8 @@ include_recipe 'hostname'
 # Set passwordless sudo
 include_recipe 'sudo'
 
-#include_recipe 'git'
+# Set the 'mail' command configuration
+include_recipe 'ssmtp'
+
+# Firewall
+include_recipe 'ufw'
