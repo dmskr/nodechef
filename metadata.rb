@@ -19,4 +19,6 @@ depends 'git'
 depends 'ulimit'
 depends 'mongodb'
 depends 'python'
+depends 'nodejs'
+depends 'npm'
 

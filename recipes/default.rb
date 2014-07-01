@@ -73,3 +73,7 @@ include_recipe 'ssmtp'
 
 # Firewall
 include_recipe 'ufw'
+
+# LogRotate
+include_recipe 'logrotate'
+
