@@ -32,15 +32,7 @@ npm_package 'mocha'
 npm_package 'bower'
 npm_package 'gulp'
 
-# Set the projects directory
-['/var/www', '/var/www/' + node['project_name']].each do |dir|
-  directory dir do
-    mode '0770'
-    owner 'node'
-    group 'node'
-  end
-end
-
+# Setup SSH
 directory "/home/node/.ssh" do
   owner 'node'
   group 'node'
@@ -61,10 +53,19 @@ template "/home/node/.ssh/id_rsa.pub" do
   mode '0600'
 end
 
-git "/var/www/#{node['project_name']}" do
+# Setup Project Directory
+git '/home/node/' + node['project_name'] do
   repository node[:git][:repository]
   action :checkout
   user 'node'
+end
+
+# Upstart script
+template "/etc/init/#{node['project_name']}.conf" do
+  source "upstart.conf.erb"
+  owner "root"
+  group "root"
+  mode 0644
 end
 
 #logrotate_app 'node' do
@@ -76,4 +77,7 @@ end
   #create    '644 root adm'
   #su
 #end
+
+# Firewall
+include_recipe 'ufw'
 

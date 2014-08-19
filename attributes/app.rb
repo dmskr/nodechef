@@ -16,5 +16,9 @@ default['nodejs'] = {
 default['firewall']['rules'] = [
   'http' => {
     'port' => 80
+  },
+  'ssh' => {
+    'port' => 22
   }
 ]
+

@@ -25,3 +25,5 @@ include_recipe 'ulimit'
   end
 end
 
+# Firewall
+include_recipe 'ufw'
